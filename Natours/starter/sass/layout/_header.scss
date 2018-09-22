@@ -1,0 +1,30 @@
+.header {
+  height: 95vh; /*95% of the viewport height*/
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)),
+      url(../img/hero.jpg);  /*gradient on top of image*/
+  background-size: cover;
+  background-position: top;
+  position: relative;   /*necessary so we can adjust the contained elements*/
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);    /* https://bennettfeely.com/clippy/ */
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;     /*moves the element 50% from its parent top*/
+    left: 50%;    /*moves the element 50% from its parent left*/
+    transform: translate(-50%, -50%);   /*shifts the element -50% of its width/height*/
+    text-align: center;
+  }
+}

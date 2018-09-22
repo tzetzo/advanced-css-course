@@ -1,0 +1,32 @@
+body {
+  font-family: "Lato", sans-serif;  /*will be inherited by all elements*/
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7; /*1.7 times the default size*/
+  color: $color-grey-dark;
+  padding: 3rem;
+}
+
+.heading-primary {
+  color: $color-white;
+  text-transform: uppercase;
+  backface-visibility: hidden; /*prevents a bug in older browsers where the element jumps when animation of children is finished*/
+  margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+  &--sub {
+    display: block;
+    font-size:2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem; /*so that it aligns with the .heading-primary-main*/
+    animation: moveInRight 1s ease-out;
+  }
+}
