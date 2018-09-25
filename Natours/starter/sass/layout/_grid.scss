@@ -1,6 +1,5 @@
 .row {
   max-width: $grid-width; //1140px for 62.5%(10px) font-size; current standard; the maximum width the element can use if available
-  background-color: #eee;
   margin: 0 auto;
   @include clearfix;
 
@@ -9,7 +8,6 @@
   }
 
   [class^="col-"] {
-    background-color: orangered;
     float: left;
     &:not(:last-child) {
         margin-right: $gutter-horizontal;

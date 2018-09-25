@@ -8,7 +8,9 @@
   background-size: cover;
   background-position: top;
   position: relative;   /*necessary so we can adjust the contained elements*/
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);    /* https://bennettfeely.com/clippy/ */
+  
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);    /* https://bennettfeely.com/clippy/ */
 
   &__logo-box {
     position: absolute;
