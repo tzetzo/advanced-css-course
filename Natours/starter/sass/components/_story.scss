@@ -9,43 +9,67 @@
     font-size: $default-font-size;
     transform: skewX(-12deg);
 
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include respond(phone) {
+        transform: skewX(0);
+    }
+
     & > * {
       transform: skewX(12deg);
+
+      @include respond(phone) {
+          transform: skewX(0);
+      }
     }
 
     &__shape {
         width: 15rem;
         height: 15rem;
         float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%); //makes the text wrap around in circle
-        shape-outside: circle(50% at 50% 50%);  //makes the text wrap around in circle
-        -webkit-clip-path: circle(50% at 50% 50%); //makes the element circle
-        clip-path: circle(50% at 50% 50%);  //makes the element circle
         transform: translateX(-3rem) skewX(12deg);
         position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%); //makes the element circle
+            clip-path: circle(50% at 50% 50%);  //makes the element circle
+            -webkit-shape-outside: circle(50% at 50% 50%); //makes the text wrap around in circle
+            shape-outside: circle(50% at 50% 50%);  //makes the text wrap around in circle
+            border-radius: none;
+        }
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);
+        }
     }
 
     &__image {
-      height: 100%;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) scale(1.1);
-      transition: all .5s;
-      backface-visibility: hidden; //used here for bug prevention
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) scale(1.1);
+        transition: all .5s;
+        backface-visibility: hidden; //used here for bug prevention
     }
 
     &__caption {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 20%);
-      color: $color-white;
-      text-transform: uppercase;
-      font-size: 1.7rem;
-      text-align: center;
-      opacity: 0;
-      transition: all .5s;
-      backface-visibility: hidden; //used here for bug prevention
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden; //used here for bug prevention
     }
 
     &:hover &__caption {

@@ -7,10 +7,38 @@
 }
 
 html {
-  //this defines what 1rem is
-  font-size: 62.5%;  /* 1rem = 10px for 16px default browser font-size -> 0.625*16 = 10px */
+    //this defines what 1rem is
+    font-size: 62.5%;  /* 1rem = 10px for 16px default browser font-size -> 0.625*16 = 10px */
+
+    //media query mixin; source order matters!
+    @include respond(tab-land) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+        font-size: 56.25%;  //1rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+        font-size: 50%;  //1rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(phone) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+        font-size: 43.75%;  //1rem = 7px, 7/16 = 43.75%
+    }
+
+    @include respond(big-desktop) {   //using mixin; passing argument & passing a block of code into the mixin! received as @content inside the mixin!
+        font-size: 75%;  //1rem = 12px, 12/16 = 75%
+    }
 }
 
 body {
-  box-sizing: border-box; /* make use of inheritance - 2 steps see * above! */
+    box-sizing: border-box; /* make use of inheritance - 2 steps see * above! */
+    padding: 3rem;
+
+    //media query mixin;
+    @include respond(tab-port) {
+        padding:0;
+    }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
 }

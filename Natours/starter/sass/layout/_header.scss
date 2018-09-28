@@ -1,32 +1,52 @@
 .header {
-  height: 95vh; /*95% of the viewport height*/
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light, 0.8),
-      rgba($color-primary-dark, 0.8)),
-      url(../img/hero.jpg);  /*gradient on top of image*/
-  background-size: cover;
-  background-position: top;
-  position: relative;   /*necessary so we can adjust the contained elements*/
-  
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);    /* https://bennettfeely.com/clippy/ */
+    height: 85vh; /*95% of the viewport height*/
 
-  &__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-  }
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)),
+        url(../img/hero-small.jpg);  /*gradient on top of image*/
 
-  &__logo {
-    height: 3.5rem;
-  }
+    background-size: cover;
+    background-position: top;
+    position: relative;   /*necessary so we can adjust the contained elements*/
 
-  &__text-box {
-    position: absolute;
-    top: 40%;     /*moves the element 50% from its parent top*/
-    left: 50%;    /*moves the element 50% from its parent left*/
-    transform: translate(-50%, -50%);   /*shifts the element -50% of its width/height*/
-    text-align: center;
-  }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);    /* https://bennettfeely.com/clippy/ */
+        height: 95vh;
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),  //2 = 2x means high resolution; safari not supporting min-resolution
+           only screen and (min-width: 125em) {  //targeting high resolution screens 2x & 3x that are more then 600px(37.5em) OR more than 2000px(125em); @ 2x high resolution screen and 600px or less an image with width of 1200px like hero-small.jpg is enough
+      background-image: linear-gradient(
+          to right bottom,
+          rgba($color-secondary-light, 0.8),
+          rgba($color-secondary-dark, 0.8)),
+          url(../img/hero.jpg);  /*gradient on top of image*/
+    }
+
+    @include respond(tab-port) {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box {
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+    }
+
+    &__logo {
+      height: 3.5rem;
+    }
+
+    &__text-box {
+      position: absolute;
+      top: 40%;     /*moves the element 50% from its parent top*/
+      left: 50%;    /*moves the element 50% from its parent left*/
+      transform: translate(-50%, -50%);   /*shifts the element -50% of its width/height*/
+      text-align: center;
+    }
 }

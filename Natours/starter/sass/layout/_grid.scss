@@ -1,17 +1,37 @@
 .row {
   max-width: $grid-width; //1140px for 62.5%(10px) font-size; current standard; the maximum width the element can use if available
   margin: 0 auto;
+
   @include clearfix;
 
+  //media query mixin; tablet portrait
+  @include respond(tab-port) {
+      max-width: 50rem;
+      padding: 0 3rem;
+  }
+
   &:not(:last-child) {
-      margin-bottom: $gutter-vertical;;
+      margin-bottom: $gutter-vertical;
+
+      @include respond(tab-port) {
+          margin-bottom: $gutter-vertical-small;
+      }
   }
 
   [class^="col-"] {
-    float: left;
-    &:not(:last-child) {
-        margin-right: $gutter-horizontal;
-    }
+      float: left;
+      &:not(:last-child) {
+          margin-right: $gutter-horizontal;
+
+          @include respond(tab-port) {
+              margin-right: 0;
+              margin-bottom: $gutter-vertical-small;
+          }
+      }
+
+      @include respond(tab-port) {
+          width: 100% !important;
+      }
   }
 
   .col-1-of-2 {
